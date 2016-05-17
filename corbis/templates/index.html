@@ -9,6 +9,7 @@
             	<div class="col-md-10">
                     <div id="toolbar">
                         <form id="add-product-form" class="form-inline" role="form" method="post" action="{% url productos:add_product %}">
+                            {% csrf_token %}
                             <input type="text" name="codigo" class="form-control" placeholder="Código">
                             <input type="text" name="nombre" class="form-control" placeholder="Nombre">
                             <input type="text" name="cantidad" class="form-control" placeholder="Cantidad">
