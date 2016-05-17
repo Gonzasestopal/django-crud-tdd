@@ -1,7 +1,4 @@
 # Create your views here.d
-import json
-import datetime
-
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
@@ -12,8 +9,8 @@ from productos.forms import ProductoForm
 from productos.models import Producto
 
 
-
 def home(request):
+	"""catalogo de productos"""
 	context = RequestContext(request)
 	productos = Producto.objects.all()
 
@@ -21,7 +18,7 @@ def home(request):
 
 @csrf_exempt
 def add_product(request):
-
+	"""añade un producto recibiendo la informacion desde una peticion ajax"""
 	if request.method == 'POST':
 
 		form = ProductoForm(request.POST)
@@ -44,6 +41,7 @@ def add_product(request):
 
 @csrf_exempt
 def update_product(request):
+	"""edita un producto recibiendo la informacion desde una peticion ajax"""
 	instance = Producto.objects.get(pk=request.POST.get('pk'))
 
 	if request.method == 'POST':
@@ -60,6 +58,7 @@ def update_product(request):
 
 @csrf_exempt
 def delete_product(request):
+	"""elimina un producto recibiendo la informacion desde una peticion ajax"""
 	instance = Producto.objects.get(id=request.POST.get('pk'))
 
 	if request.method == 'POST':

@@ -1,3 +1,4 @@
+// jquery ajax
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -29,7 +30,7 @@ $.ajaxSetup({
     }
 });
 
-
+// añade un producto asincronamente
 $("#add-product-form").on('submit', function(e) {
 	e.preventDefault();
 	$.ajax({
@@ -47,10 +48,12 @@ $("#add-product-form").on('submit', function(e) {
 	});
 });
 
+// remueve el boton de resultados 
 $('.results').on('click', function() {
 	$(this).children().remove();
 })
 
+// remueve el producto asincronamente
 $('body').on('click', '.glyphicon-remove', function() {
 	var $row = $(this).closest('tr')
 	var pk = $row.find('td:first').text()
@@ -72,8 +75,10 @@ $('body').on('click', '.glyphicon-remove', function() {
 	})
 })
 
+// genera tooltips con la libreria de bootstrap
 $('tr').tooltip();
 
+// edita un producto asincronamente
 $('body').on('click', '.glyphicon-pencil', function() {
 	var $row = $(this).closest('tr')
 	var $text = $row.find('.update')
