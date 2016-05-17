@@ -42,6 +42,7 @@ def add_product(request):
 	else:
 		return HttpResponse(status=500)
 
+@csrf_exempt
 def update_product(request):
 	instance = Producto.objects.get(pk=request.POST.get('pk'))
 
@@ -57,6 +58,7 @@ def update_product(request):
 	else:
 		return HttpResponse(status=500)
 
+@csrf_exempt
 def delete_product(request):
 	instance = Producto.objects.get(id=request.POST.get('pk'))
 
