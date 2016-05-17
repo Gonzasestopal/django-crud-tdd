@@ -3,16 +3,16 @@ import json
 import datetime
 
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.shortcuts import render_to_response, render
 
 from productos.forms import ProductoForm
 from productos.models import Producto
 
-def home(self):
+def home(request):
 
 	productos = Producto.objects.all()
 
-	return render_to_response('index.html', {'productos': productos})
+	return render(request, 'index.html', {'productos': productos})
 
 def add_product(request):
 
