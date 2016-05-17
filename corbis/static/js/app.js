@@ -58,7 +58,7 @@ $('body').on('click', '.glyphicon-remove', function() {
 	$.ajax({
 		type: 'post',
 		url: "//"+location.host+"/productos/delete_product/",
-		data: pk,
+		data: {pk:pk},
 		success: function() {
 			$row.fadeOut(function() {$(this).remove()})
 			$('.results').fadeOut(function() {$(this).html("<button type='button' class='btn btn-success'>Producto eliminado<i class='glyphicon glyphicon-remove'></i></button>").fadeIn()});
