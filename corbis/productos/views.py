@@ -4,19 +4,18 @@ import datetime
 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render
+from django.template import RequestContext
 
 from productos.forms import ProductoForm
 from productos.models import Producto
 
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 def home(request):
-
+	context = RequestContext(request)
 	productos = Producto.objects.all()
 
-	return render(request, 'index.html', {'productos': productos})
+	return render_to_response('index.html', {'productos': productos}, context)
 
-@ensure_csrf_cookie
 def add_product(request):
 
 	if request.method == 'POST':
