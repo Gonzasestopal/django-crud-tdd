@@ -39,7 +39,7 @@ $("#add-product-form").on('submit', function(e) {
 	$.ajax({
 		method: $(this).attr('method'),
 		url: $(this).attr('action'),
-		data: $(this).serialize()+'&csrfmiddlewaretoken='+csrftoken,
+		data: $(this).serialize()+'&csrfmiddlewaretoken='+window-CSRF_TOKEN,
 		success: function(data) {
 			$('#add-product-form').trigger('reset');
 			$('table').prepend($('<tr><td style="display:none">' + data.id + '</td><td class="update">' + data.codigo + '</td><td class="update">' + data.nombre + '</td><td class="update">' + data.cantidad + '</td><td><i class="glyphicon glyphicon-pencil"></i></td><td><i class="glyphicon glyphicon-remove"></i></td></tr>'))
