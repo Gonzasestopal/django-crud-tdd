@@ -8,12 +8,15 @@ from django.shortcuts import render_to_response, render
 from productos.forms import ProductoForm
 from productos.models import Producto
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 def home(request):
 
 	productos = Producto.objects.all()
 
 	return render(request, 'index.html', {'productos': productos})
 
+@ensure_csrf_cookie
 def add_product(request):
 
 	if request.method == 'POST':
