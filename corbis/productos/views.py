@@ -18,7 +18,7 @@ def home(request):
 
 @csrf_exempt
 def add_product(request):
-	"""añade un producto recibiendo la informacion desde una peticion ajax"""
+	"""crea un producto recibiendo la informacion desde una peticion ajax"""
 	if request.method == 'POST':
 
 		form = ProductoForm(request.POST)
