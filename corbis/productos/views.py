@@ -9,7 +9,9 @@ from django.template import RequestContext
 from productos.forms import ProductoForm
 from productos.models import Producto
 
+from django.views.decorators.csrf import ensure_csrf_cookie
 
+@ensure_csrf_cookie
 def home(request):
 	context = RequestContext(request)
 	productos = Producto.objects.all()
