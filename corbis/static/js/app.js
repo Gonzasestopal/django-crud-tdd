@@ -64,6 +64,7 @@ $('body').on('click', '.glyphicon-remove', function() {
 		data: {pk:pk},
 		success: function() {
 			$row.fadeOut(function() {$(this).remove()})
+			$row.closest('[data-toggle="tooltip"]').tooltip('destroy');
 			$('.results').fadeOut(function() {$(this).html("<button type='button' class='btn btn-success'>Producto eliminado<i class='glyphicon glyphicon-remove'></i></button>").fadeIn()});
 		},
 		error: function() {
