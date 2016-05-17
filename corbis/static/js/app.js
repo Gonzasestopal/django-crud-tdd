@@ -57,8 +57,8 @@ $('body').on('click', '.glyphicon-remove', function() {
 
 	$.ajax({
 		type: 'post',
-		url: "//"+location.host+"productos/delete_product/",
-		data: {pk: pk},
+		url: "//"+location.host+"/productos/delete_product/",
+		data: pk,
 		success: function() {
 			$row.fadeOut(function() {$(this).remove()})
 			$('.results').fadeOut(function() {$(this).html("<button type='button' class='btn btn-success'>Producto eliminado<i class='glyphicon glyphicon-remove'></i></button>").fadeIn()});
@@ -94,7 +94,7 @@ $('body').on('click', '.glyphicon-pencil', function() {
 	    	// console.log(myArray)
 	    	$.ajax({
 	    		type: 'post',
-	    		url: "//"+location.host+"productos/update_product/",
+	    		url: "//"+location.host+"/productos/update_product/",
 	    		data: {codigo:myArray[0], nombre: myArray[1], cantidad: myArray[2], pk:myArray[3], csrfmiddlewaretoken: csrftoken},
 	    		success: function() {
 	    			$('.results').fadeOut(function() {$(this).html("<button type='button' class='btn btn-success'>Producto editado<i class='glyphicon glyphicon-remove'></i></button>").fadeIn()});
