@@ -6,8 +6,11 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 
+from django.views.decorators.csrf import csrf_exempt
+
 from productos.forms import ProductoForm
 from productos.models import Producto
+
 
 
 def home(request):
@@ -16,6 +19,7 @@ def home(request):
 
 	return render_to_response('index.html', {'productos': productos}, context)
 
+@csrf_exempt
 def add_product(request):
 
 	if request.method == 'POST':
