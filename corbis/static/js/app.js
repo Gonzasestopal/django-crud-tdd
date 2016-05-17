@@ -61,7 +61,7 @@ $('body').on('click', '.glyphicon-remove', function() {
 	$.ajax({
 		type: 'post',
 		url: "//"+location.host+"/productos/delete_product/",
-		data: {pk:pk},
+		data: {pk:pk, csrfmiddlewaretoken: csrftoken},
 		success: function() {
 			$row.fadeOut(function() {$(this).remove()})
 			$row.closest('[data-toggle="tooltip"]').tooltip('destroy');

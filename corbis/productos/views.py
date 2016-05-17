@@ -18,7 +18,7 @@ def home(request):
 
 	return render_to_response('index.html', {'productos': productos}, context)
 
-@csrf_exempt
+
 def add_product(request):
 	"""crea un producto recibiendo la informacion desde una peticion ajax"""
 	if request.method == 'POST':
@@ -41,7 +41,7 @@ def add_product(request):
 	else:
 		return HttpResponse(status=500)
 
-@csrf_exempt
+
 def update_product(request):
 	"""edita un producto recibiendo la informacion desde una peticion ajax"""
 	instance = Producto.objects.get(pk=request.POST.get('pk'))
@@ -58,7 +58,7 @@ def update_product(request):
 	else:
 		return HttpResponse(status=500)
 
-@csrf_exempt
+
 def delete_product(request):
 	"""elimina un producto recibiendo la informacion desde una peticion ajax"""
 	instance = Producto.objects.get(id=request.POST.get('pk'))
