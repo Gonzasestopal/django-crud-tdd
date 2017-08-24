@@ -29,10 +29,12 @@ class TestProductAddition(TestCase):
         Tests that the product added has been created.
         """
         c = Client()
-        data = {'cantidad': 1, 'nombre': "test", "codigo": "123"}
+        data = {'cantidad': 1, 'nombre': "test product", "codigo": "123"}
         response = c.post('/productos/add/', data)
+        index = c.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(json.loads(response.content)['id'], 1)
+        self.assertTrue(Producto.objects.filter(codigo=123).exists())
+        self.assertContains(index, "test product")
 
 
 class TestProductEdition(TestCase):
@@ -44,10 +46,12 @@ class TestProductEdition(TestCase):
         Tests that the product edited has been modified.
         """
         c = Client()
-        data = {'pk': self.product.pk, 'cantidad': 2, 'nombre': 'new_test', 'codigo': '456'}
+        data = {'pk': self.product.pk, 'cantidad': 2, 'nombre': 'new test', 'codigo': '456'}
         response = c.post('/productos/update/', data)
+        index = c.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(Producto.objects.filter(nombre='new_test').exists())
+        self.assertTrue(Producto.objects.filter(nombre='new test').exists())
+        self.assertContains(index, "new test")
 
 class TestProductDeletion(TestCase):
     def setUp(self):
@@ -60,5 +64,7 @@ class TestProductDeletion(TestCase):
         c = Client()
         data = {'pk': self.product.pk}
         response = c.post('/productos/delete/', data)
+        index = c.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Producto.objects.filter(pk=1).exists())
+        self.assertNotContains(index, 'test')
