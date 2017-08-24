@@ -38,6 +38,8 @@ def add_product(request):
 			data = json.dumps(data)
 			return HttpResponse(data, content_type='application/json')
 
+		return HttpResponse(status=400)
+
 	else:
 		return HttpResponse(status=500)
 
@@ -53,7 +55,7 @@ def update_product(request):
 			instance.cantidad = int(request.POST.get('cantidad'))
 			instance.save()
 
-			return HttpResponse(status=200)
+			return HttpResponse(instance, status=200, content_type='application/json')
 
 	else:
 		return HttpResponse(status=500)

@@ -36,7 +36,7 @@ $("#add-product-form").on('submit', function(e) {
 	$.ajax({
 		method: $(this).attr('method'),
 		url: $(this).attr('action'),
-		data: $(this).serialize()+'&csrfmiddlewaretoken='+window.CSRF_TOKEN,
+		data: $(this).serialize(),
 		success: function(data) {
 			$('#add-product-form').trigger('reset');
 			$('table').prepend($('<tr><td style="display:none">' + data.id + '</td><td class="update">' + data.codigo + '</td><td class="update">' + data.nombre + '</td><td class="update">' + data.cantidad + '</td><td><i class="glyphicon glyphicon-pencil"></i></td><td><i class="glyphicon glyphicon-remove"></i></td></tr>'))
@@ -48,7 +48,7 @@ $("#add-product-form").on('submit', function(e) {
 	});
 });
 
-// remueve el boton de resultados 
+// remueve el boton de resultados
 $('.results').on('click', function() {
 	$(this).children().remove();
 })
@@ -60,7 +60,7 @@ $('body').on('click', '.glyphicon-remove', function() {
 
 	$.ajax({
 		type: 'post',
-		url: "//"+location.host+"/productos/delete_product/",
+		url: "//"+location.host+"/productos/delete/",
 		data: {pk:pk, csrfmiddlewaretoken: csrftoken},
 		success: function() {
 			$row.fadeOut(function() {$(this).remove()})
@@ -100,7 +100,7 @@ $('body').on('click', '.glyphicon-pencil', function() {
 	    	// console.log(myArray)
 	    	$.ajax({
 	    		type: 'post',
-	    		url: "//"+location.host+"/productos/update_product/",
+	    		url: "//"+location.host+"/productos/update/",
 	    		data: {codigo:myArray[0], nombre: myArray[1], cantidad: myArray[2], pk:myArray[3], csrfmiddlewaretoken: csrftoken},
 	    		success: function() {
 	    			$('.results').fadeOut(function() {$(this).html("<button type='button' class='btn btn-success'>Producto editado<i class='glyphicon glyphicon-remove'></i></button>").fadeIn()});
